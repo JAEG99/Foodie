@@ -19,7 +19,7 @@ app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
-recipe_collection = mongo.db.Foodie  # Adjust this line
+recipe_collection = mongo.db.get_collection("Foodie")
 
 @app.route('/')
 def index():
