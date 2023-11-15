@@ -1,15 +1,15 @@
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
-from flask_pymongo import PyMongo  
+from flask_pymongo import PyMongo
+from pymongo import MongoClient
 from bson.objectid import ObjectId
 from dotenv import load_dotenv
-import os  # Import the os module
+import os
 
 if os.path.exists("env.py"):
     import env
 
-# Load environment variables from env.py
 load_dotenv()
 
 app = Flask(__name__)
@@ -18,7 +18,10 @@ app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
-mongo = PyMongo(app)
+mongo_uri = os.environ.get("MONGO_URI")
+client = MongoClient(mongo_uri)
+mongo = PyMongo(app, client=client)
+
 recipe_collection = mongo.db.get_collection("Foodie")
 
 @app.route('/')
