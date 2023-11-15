@@ -1,16 +1,14 @@
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
-from pymongo import MongoClient
+from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from dotenv import load_dotenv
 if os.path.exists("env.py"):
     import env
 
-
 # Load environment variables from env.py
 load_dotenv()
-
 
 app = Flask(__name__)
 
@@ -19,7 +17,7 @@ app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
-
+recipe_collection = mongo.db.Foodie  # Adjust this line
 
 @app.route('/')
 def index():
