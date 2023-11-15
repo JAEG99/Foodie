@@ -9,10 +9,10 @@ load_dotenv()
 app = Flask(__name__)
 
 mongo_connection_string = os.getenv("MONGO_CONNECTION_STRING")
-database_name = os.getenv("Recipe")
+database_name = os.getenv("Cluster0")
 
 client = MongoClient(mongo_connection_string)
-database = client[Recipe]
+database = client["Recipe"]
 recipe_collection = database["Recipe"]
 
 @app.route('/')
