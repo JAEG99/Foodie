@@ -1,19 +1,25 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import (
+    Flask, flash, render_template,
+    redirect, request, session, url_for)
 from pymongo import MongoClient
+from bson.objectid import ObjectId
 from dotenv import load_dotenv
-import os
+if os.path.exists("env.py"):
+    import env
+
 
 # Load environment variables from env.py
 load_dotenv()
 
+
 app = Flask(__name__)
 
-mongo_connection_string = os.getenv("MONGO_CONNECTION_STRING")
-database_name = os.getenv("Cluster0")
+app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
+app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
+app.secret_key = os.environ.get("SECRET_KEY")
 
-client = MongoClient(mongo_connection_string)
-database = client["Recipe"]
-recipe_collection = database["Recipe"]
+mongo = PyMongo(app)
+
 
 @app.route('/')
 def index():
