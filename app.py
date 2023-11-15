@@ -1,10 +1,10 @@
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
-from pymongo import MongoClient
+from flask_pymongo import PyMongo  
 from bson.objectid import ObjectId
 from dotenv import load_dotenv
-import os  
+import os  # Import the os module
 
 if os.path.exists("env.py"):
     import env
