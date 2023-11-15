@@ -1,6 +1,5 @@
-from flask import Flask, flash, render_template, redirect, request, session, url_for
+from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
-from pymongo import MongoClient
 from dotenv import load_dotenv
 import os
 
@@ -15,10 +14,7 @@ app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
-mongo_uri = os.environ.get("MONGO_URI")
-client = MongoClient(mongo_uri)
-mongo = PyMongo(app, client=client)
-
+mongo = PyMongo(app)
 recipe_collection = mongo.db.get_collection("Foodie")
 
 @app.route('/')
