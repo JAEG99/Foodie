@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from pymongo import MongoClient
-from env import load_dotenv
+from dotenv import load_dotenv
+import os
 
 # Load environment variables from env.py
 load_dotenv()
