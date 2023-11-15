@@ -1,42 +1,37 @@
 from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
+from pymongo import MongoClient
 from dotenv import load_dotenv
 import os
+import logging
+import sys
 
+# Load environment variables
 if os.path.exists("env.py"):
     import env
-
 load_dotenv()
 
+# Set up Flask app
 app = Flask(__name__)
-
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
+# Set up logging
+logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
+
+# Attempt to connect to MongoDB and log relevant information
 mongo = PyMongo(app)
-recipe_collection = mongo.db.get_collection("Foodie")
+logging.debug(f"MongoDB URI: {app.config['MONGO_URI']}")
+try:
+    mongo.init_app(app)
+    logging.debug("Connected to MongoDB")
+except Exception as e:
+    logging.error(f"Failed to connect to MongoDB: {e}")
 
-@app.route('/')
-def index():
-    return render_template('index.html')
+logging.debug(f"MongoDB database: {mongo.db}")
 
-@app.route('/submit_recipe', methods=['POST'])
-def submit_recipe():
-    if request.method == 'POST':
-        recipe_name = request.form['recipe_name']
-        description = request.form['description']
-        instructions = request.form['instructions']
-
-        recipe_data = {
-            "RECIPE_NAME": recipe_name,
-            "RECIPE_description": description,
-            "RECIPE_Instructions": instructions
-        }
-
-        recipe_collection.insert_one(recipe_data)
-
-        return redirect(url_for('index'))
+# Your routes and other code go here
 
 if __name__ == '__main__':
     app.run(debug=True)
