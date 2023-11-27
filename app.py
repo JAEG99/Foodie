@@ -2,7 +2,6 @@ import os
 from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
-from whitenoise import WhiteNoise
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 if os.path.exists("env.py"):
@@ -19,6 +18,13 @@ port = int(os.environ.get("PORT", 5000))
 
 mongo = PyMongo(app)
 
+@app.route('/')
+def index():
+    # Fetch a random recipe from MongoDB
+    random_recipe = mongo.db.Foodie.aggregate([{ '$sample': { 'size': 1 } }]).next()
+
+    # Render the template with the random recipe
+    return render_template('index.html', random_recipe=random_recipe)
 
 @app.route("/")
 def index():
@@ -69,6 +75,8 @@ def insert_into_reviews(recipe_name):
         "star_rating": 4
     }
     db.Reviews.insert_one(review_data)
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)

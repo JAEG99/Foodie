@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Foodie Recipes{% endblock %}</title>
+    
+</head>
+<body>
+
+    <header>
+        <h1>Foodie Recipes</h1>
+        
+    </header>
+
+    <main>
+        <section id="recipe-header">
+            <h2>{% block recipe_title %}{% endblock %}</h2>
+           
+        </section>
+
+        <section id="recipe-content">
+            {% block content %}{% endblock %}
+            
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Foodie Recipes</p>
+    </footer>
+
+    
+
+</body>
+</html>
