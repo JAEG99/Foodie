@@ -18,6 +18,7 @@ port = int(os.environ.get("PORT", 5000))
 
 mongo = PyMongo(app)
 
+
 @app.route('/')
 def index():
     # Fetch a random recipe from MongoDB
@@ -25,10 +26,6 @@ def index():
 
     # Render the template with the random recipe
     return render_template('index.html', random_recipe=random_recipe)
-
-@app.route("/")
-def index():
-    return render_template("index.html")
 
 @app.route("/recipe_form")
 def recipe_form():
@@ -52,12 +49,10 @@ def submit_recipe():
     return redirect(url_for("index"))
 
 def insert_into_ingredients(recipe_name, ingredients):
-   
     ingredients_data = {"recipe_name": recipe_name, "ingredients": ingredients}
-    db.Ingredients.insert_one(ingredients_data)
+    mongo.db.Ingredients.insert_one(ingredients_data)
 
 def insert_into_recipe(recipe_name, instructions, prep_time, cook_time, servings):
-   
     recipe_data = {
         "recipe_name": recipe_name,
         "instructions": instructions,
@@ -65,7 +60,7 @@ def insert_into_recipe(recipe_name, instructions, prep_time, cook_time, servings
         "cook_time": cook_time,
         "servings": servings
     }
-    db.Recipe.insert_one(recipe_data)
+    mongo.db.Recipe.insert_one(recipe_data)
 
 def insert_into_reviews(recipe_name):
     
