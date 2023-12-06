@@ -13,6 +13,21 @@
     <title>Submission Confirmation</title>
 </head>
 <body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <div class="header-left col-lg-4 col-md-4 col-12">
+                    <a class="header-button" href="{{ url_for('recipe_form') }}">Add Recipe</a>
+                    <a class="header-button" href="{{ url_for('recipes') }}">Recipes</a>
+                    <a class="header-button" href="{{ url_for('login') }}">Login</a>
+                    <a class="header-button" href="{{ url_for('register') }}">Register</a>
+                </div>
+                <div class="header-center col-lg-4 col-md-4 col-12">
+                    <a href="/"><img src="assets/images/Foodie-logos_transparent.png" alt="Logo"></a>
+                </div>
+            </div>
+        </nav>
+    </header>
     <div class="container">
         <h1 class="text-center my-4">Submission Confirmed</h1>
         <p>Your recipe submission was successful. Thank you!</p>

@@ -1,6 +1,6 @@
 # **_Foodie_**
 
-Foodie is a typing speed and accuracy testing website. The site is aimed generally at the casual Foodie, as it uses simple paragraphs to test your ability to type correctly. It has been aimed at casual Foodies with its less difficult paragraphs and fun layout.
+Foodie is a Recipe website. The site is aimed generally at the casual foodie, as it is an easy way in which to store and look at other users saved recipes.
 
 Welcome to the journey through [Foodie](https://jaeg99.github.io/Foodie/index.html).
 
@@ -37,9 +37,9 @@ Welcome to the journey through [Foodie](https://jaeg99.github.io/Foodie/index.ht
 * As a user, I want to be able to navigate through the whole site smoothly.
 * As a user, I want to understand the purpose of the site upon loading it.
 * As a user, I want to easily be able to contact Foodie for more information.
-* As a user, I want to share my scores on social media with links.
-* As a user, I want to be able to see a clear result of my skills.
-* As a user, I want to see clear ways to test my ability.
+* As a user, I want to see mine and others recipes.
+* As a user, I want to be able add my own recipes.
+* As a user, I want to have an account.
 
 [Back to top](#contents)
 

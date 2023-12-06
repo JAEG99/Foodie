@@ -146,8 +146,7 @@ footer {
 }
 
 /* Login and Register Page Styling */
-.login-container,
-.register-container {
+.register-form {
     max-width: 400px;
     margin: 50px auto;
     background-color: #fff;
@@ -156,27 +155,72 @@ footer {
     border-radius: 5px;
 }
 
-.login-form,
-.register-form {
-    display: flex;
-    flex-direction: column;
-}
-
-.login-form input,
+.register-form label,
 .register-form input {
+    width: 100%;
     margin-bottom: 15px;
 }
 
-.login-form button,
 .register-form button {
+    width: 100%;
     margin-top: 15px;
 }
 
-.login-link,
-.register-link {
+.login-form {
+    max-width: 400px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.login-form label,
+.login-form input {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.login-form button {
+    width: 100%;
+    margin-top: 15px;
+}
+
+
+/* Recipe Section Styling */
+.recipe {
+    background-color: #f8f8f8;
+    padding: 40px 0;
     text-align: center;
-    margin-top: 20px;
-    font-size: 14px;
+}
+
+.recipe h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.recipe-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    text-align: left;
+}
+
+.recipe-details {
+    width: 70%; /* Adjust the width as needed */
+}
+
+.recipe-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 /* Responsive Styles */

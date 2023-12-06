@@ -28,61 +28,33 @@
             </div>
         </nav>
     </header>
-    <section class="image-carousel">
-        <div class="container">
-            <h2>Delicious Food Photos</h2>
-            <div id="food-carousel" class="carousel slide" data-ride="carousel" data-interval="8000">
-                <<div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="{{ url_for('static', filename='images/food1.jpg') }}" alt="Food 1">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ url_for('static', filename='images/food2.jpg') }}" alt="Food 2">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ url_for('static', filename='images/food3.jpg') }}" alt="Food 3">
-                    </div>
-                </div>
-                
-                </div>
-            </div>
-        </div>
-    </section>
     <section class="recipe">
         <div class="container">
-            <h2>Featured Recipe</h2>
             <div class="recipe-content">
                 <div class="recipe-details">
-                    <h3>{{ random_recipe.RECIPE_NAME }}</h3>
-                    <p>{{ random_recipe.RECIPE_description }}</p>
+                    <!-- Display recipe information based on data from the database -->
+                    <h3>{{ selected_recipe.RECIPE_NAME }}</h3>
+                    <p>{{ selected_recipe.RECIPE_description }}</p>
                     <ul>
-                        {% for ingredient in random_recipe.ingredients %}
+                        {% for ingredient in selected_recipe.ingredients %}
                             <li>{{ ingredient }}</li>
                         {% endfor %}
                     </ul>
                     <p>Instructions:</p>
                     <ol>
-                        {% for step in random_recipe.instructions %}
+                        {% for step in selected_recipe.instructions %}
                             <li>{{ step }}</li>
                         {% endfor %}
                     </ol>
-                </div>
-                <div class="recipe-image">
-                    <img src="{{ random_recipe.image_url }}" alt="Food Image">
                 </div>
             </div>
         </div>
     </section>
     
     <footer>
-    <div class="footer-social">
-        <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-linkedin"></i></a>
-    </div>
+        <!-- Include your footer content here -->
     </footer>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Include your scripts here if needed -->
 </body>
 </html>

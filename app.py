@@ -99,7 +99,7 @@ def insert_into_reviews(recipe_name):
         "review_text": "Placeholder review text",
         "star_rating": 4
     }
-    db.Reviews.insert_one(review_data)
+    mongo.db.Reviews.insert_one(review_data)
 
 
 # Add the new route for fetching recipes
@@ -109,6 +109,21 @@ def api_get_recipes():
     recipes = mongo.db.Recipe.find({'recipe_name': {'$regex': f'.*{search_term}.*', '$options': 'i'}})
     recipes_list = [{"recipe_name": recipe['recipe_name'], "instructions": recipe['instructions']} for recipe in recipes]
     return jsonify(recipes_list)
+
+@app.route('/recipe_page/<recipe_name>')
+def recipe_page(recipe_name):
+    # Fetch the recipe from MongoDB using the provided recipe_name
+    selected_recipe = mongo.db.Recipe.find_one({'RECIPE_NAME': recipe_name})
+
+    # Check if the recipe is found
+    if selected_recipe:
+        # Render the template with the selected recipe
+        return render_template('recipe_page.html', selected_recipe=selected_recipe)
+    else:
+        # Recipe not found, you can redirect to an error page or display a message
+        flash('Recipe not found', 'error')
+        return redirect(url_for('index'))
+
 
 if __name__ == '__main__':
     app.run(debug=True)

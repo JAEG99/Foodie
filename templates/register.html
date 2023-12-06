@@ -13,15 +13,34 @@
     
 </head>
 <body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <div class="header-left col-lg-4 col-md-4 col-12">
+                    <a class="header-button" href="{{ url_for('recipe_form') }}">Add Recipe</a>
+                    <a class="header-button" href="{{ url_for('recipes') }}">Recipes</a>
+                    <a class="header-button" href="{{ url_for('login') }}">Login</a>
+                    <a class="header-button" href="{{ url_for('register') }}">Register</a>
+                </div>
+                <div class="header-center col-lg-4 col-md-4 col-12">
+                    <a href="/"><img src="assets/images/Foodie-logos_transparent.png" alt="Logo"></a>
+                </div>
+            </div>
+        </nav>
+    </header>
     <h1>User Registration</h1>
-    <form id="registrationForm" method="POST" action="/register">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-
-        <button type="submit">Register</button>
+    <form id="registrationForm" method="POST" action="/register" class="register-form">
+        <div class="mb-3">
+            <label for="username" class="form-label">Username:</label>
+            <input type="text" id="username" name="username" class="form-control" required>
+        </div>
+    
+        <div class="mb-3">
+            <label for="password" class="form-label">Password:</label>
+            <input type="password" id="password" name="password" class="form-control" required>
+        </div>
+    
+        <button type="submit" class="btn btn-primary">Register</button>
     </form>
     <footer>
         <div class="footer-social">

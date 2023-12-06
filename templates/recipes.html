@@ -13,7 +13,19 @@
 </head>
 <body>
     <header>
-        <!-- Your header content here -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <div class="header-left col-lg-4 col-md-4 col-12">
+                    <a class="header-button" href="{{ url_for('recipe_form') }}">Add Recipe</a>
+                    <a class="header-button" href="{{ url_for('recipes') }}">Recipes</a>
+                    <a class="header-button" href="{{ url_for('login') }}">Login</a>
+                    <a class="header-button" href="{{ url_for('register') }}">Register</a>
+                </div>
+                <div class="header-center col-lg-4 col-md-4 col-12">
+                    <a href="/"><img src="assets/images/Foodie-logos_transparent.png" alt="Logo"></a>
+                </div>
+            </div>
+        </nav>
     </header>
 
     <div class="container mt-5">
@@ -25,9 +37,18 @@
         </div>
 
         <!-- Recipe List -->
-        <div id="recipeList" class="row">
-            <!-- Recipe cards will be dynamically added here -->
-        </div>
+        <section class="recipes-list">
+            <div class="container">
+               
+                {% for recipe in recipes %}
+                    <div class="recipe-card">
+                        <h3>{{ recipe.RECIPE_NAME }}</h3>
+                        <!-- Add other relevant information or a brief description -->
+                        <a href="{{ url_for('recipe_page', id=recipe.ID) }}">Read More</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
     </div>
     <footer>
         <div class="footer-social">
@@ -39,7 +60,7 @@
         </footer>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- Your custom script for handling recipe search and display -->
+    <
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
