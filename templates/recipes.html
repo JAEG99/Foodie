@@ -1,21 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Recipes</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+    <title>All Recipes</title>
 </head>
 <body>
-    <h1>Recipes</h1>
-    <ul>
-        {% for recipe in recipes %}
-            <li>
-                <h2>{{ recipe.name }}</h2>
-                <p><strong>Ingredients:</strong> {{ recipe.ingredients }}</p>
-                <p><strong>Instructions:</strong> {{ recipe.instructions }}</p>
-                <p><strong>Prep Time:</strong> {{ recipe.prep_time }} minutes</p>
-                <p><strong>Cook Time:</strong> {{ recipe.cook_time }} minutes</p>
-                <p><strong>Servings:</strong> {{ recipe.servings }}</p>
-            </li>
-        {% endfor %}
-    </ul>
+    <header>
+        <!-- Your header content here -->
+    </header>
+
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">All Recipes</h1>
+
+        <!-- Search Bar -->
+        <div class="mb-3">
+            <input type="text" id="recipeSearch" class="form-control" placeholder="Search by Recipe Name">
+        </div>
+
+        <!-- Recipe List -->
+        <div id="recipeList" class="row">
+            <!-- Recipe cards will be dynamically added here -->
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Your custom script for handling recipe search and display -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

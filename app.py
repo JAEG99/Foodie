@@ -1,12 +1,12 @@
 import os
 from flask import (
     Flask, flash, render_template,
-    redirect, request, session, url_for)
+    redirect, request, session, url_for, jsonify)  # Import jsonify and request
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from werkzeug.security import generate_password_hash, check_password_hash  # Import password hashing
 if os.path.exists("env.py"):
     import env
-
 
 app = Flask(__name__)
 
@@ -102,6 +102,14 @@ def insert_into_reviews(recipe_name):
     db.Reviews.insert_one(review_data)
 
 
+# Add the new route for fetching recipes
+@app.route('/api/recipes', methods=['GET'])
+def api_get_recipes():
+    search_term = request.args.get('search', '')
+    recipes = mongo.db.Recipe.find({'recipe_name': {'$regex': f'.*{search_term}.*', '$options': 'i'}})
+    recipes_list = [{"recipe_name": recipe['recipe_name'], "instructions": recipe['instructions']} for recipe in recipes]
+    return jsonify(recipes_list)
 
-if __name__ == "__main__":
-    app.run(debug=False)
+if __name__ == '__main__':
+    app.run(debug=True)
+    
