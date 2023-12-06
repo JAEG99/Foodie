@@ -27,7 +27,37 @@ def index():
     # Render the template with the random recipe
     return render_template('index.html', random_recipe=random_recipe)
 
-@app.route("/recipe_form")
+@app.route('/register', methods=['POST'])
+def register():
+    username = request.json.get('username')
+    password = request.json.get('password')
+
+    # Hash the password before storing it
+    hashed_password = generate_password_hash(password, method='sha256')
+
+    # Save the user to the database
+    user_data = {"USER": username, "PASSWORD": hashed_password}
+    mongo.db.Users.insert_one(user_data)
+
+    return jsonify({'message': 'User registered successfully'}), 201
+
+@app.route('/login', methods=['POST'])
+def login():
+    username = request.json.get('username')
+    password = request.json.get('password')
+
+    # Retrieve the user from the database
+    user_data = mongo.db.Users.find_one({'USER': username})
+
+    if user_data and check_password_hash(user_data['PASSWORD'], password):
+        return jsonify({'message': 'Login successful'}), 200
+    else:
+        return jsonify({'message': 'Invalid credentials'}), 401
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+app.route("/recipe_form")
 def recipe_form():
     return render_template("recipe_form.html")
 

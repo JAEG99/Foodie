@@ -9,3 +9,18 @@ $(document).ready(function() {
   });
 });
 
+$(document).ready(function () {
+  // Intercept form submission
+  $('#recipeForm').submit(function (e) {
+      e.preventDefault(); // Prevent the default form submission
+
+
+      // Redirect to a success page after submission
+      window.location.href = 'success.html';
+
+      // Set a timeout to redirect back to index.html after a certain amount of time (e.g., 5 seconds)
+      setTimeout(function () {
+          window.location.href = 'index.html';
+      }, 5000); // 5000 milliseconds (5 seconds)
+  });
+});
