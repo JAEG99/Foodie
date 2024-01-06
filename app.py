@@ -14,7 +14,9 @@ app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
-port = int(os.environ.get("PORT", 5000))
+if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
 
 mongo = PyMongo(app)
 
@@ -126,5 +128,5 @@ def recipe_page(recipe_name):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.debug = False
     
