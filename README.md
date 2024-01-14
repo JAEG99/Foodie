@@ -47,6 +47,12 @@ The wireframes for Foodie were produced in [Balsamiq](https://balsamiq.com). My 
 
 ![Desktop wireframe image](assets/readme-images/desktop-wireframes.png)
 
+## Data Structure
+![Data image](assets/readme-images/Tables.png)
+
+![ERD image](assets/readme-images/EPD.png)
+
+
 
 [Back to top](#contents)
 
