@@ -18,8 +18,6 @@ Welcome to the journey through [Foodie](https://jaeg99.github.io/Foodie/index.ht
 * [**Features**](#features)
     * [**Home**](#Logo)
          * [Logo](#Logo)
-         * [Start Button](#Start-Button)
-         * [Game](#Game)
          * [Footer](#footer)
     * [**Future Features**](#future-features)
 * [**Technologies Used**](#technologies-used)
